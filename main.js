@@ -12,9 +12,12 @@ function sortTr(event) {
     }
 
     if (type === 'number') {
-        newRowsTable.sort((rowFirst, rowSecond) => rowFirst.cells[cellIndex].textContent - rowSecond.cells[cellIndex].textContent);
+        newRowsTable.sort((rowFirst, rowSecond) =>
+            rowFirst.cells[cellIndex].textContent - rowSecond.cells[cellIndex].textContent);
     } else if (type === 'string') {
-        newRowsTable.sort((rowFirst, rowSecond) => rowFirst.cells[cellIndex].textContent.localeCompare(rowSecond.cells[cellIndex].textContent));
+        newRowsTable.sort((rowFirst, rowSecond) =>
+            rowFirst.cells[cellIndex].textContent
+            .localeCompare(rowSecond.cells[cellIndex].textContent));
     }
 
     newRowsTable.forEach(row => body.appendChild(row));
