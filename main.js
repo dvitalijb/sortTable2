@@ -5,19 +5,26 @@ function sortTr(event) {
     const { cellIndex } = event.target;
     const { type } = event.target.dataset;
     const body = table.tBodies[0];
-    let newRowsTable = [];
+    const newRowsTable = [...rows];
+    // const textContentCell =
 
-    for (let row of rows) {
-        newRowsTable = [...newRowsTable, row];
+    switch(type) {
+        case 'number' :
+            newRowsTable.sort((rowFirst, rowSecond) => (+rowFirst.cells[cellIndex].textContent)
+                - (+rowSecond.cells[cellIndex].textContent))
+            break;
+        case 'string' :
+            newRowsTable.sort((rowFirst, rowSecond) => rowFirst.cells[cellIndex].textContent
+                .localeCompare(rowSecond.cells[cellIndex].textContent));
     }
 
-    if (type === 'number') {
-        newRowsTable.sort((rowFirst, rowSecond) => (+rowFirst.cells[cellIndex].textContent)
-            - (+rowSecond.cells[cellIndex].textContent));
-    } else if (type === 'string') {
-        newRowsTable.sort((rowFirst, rowSecond) => rowFirst.cells[cellIndex].textContent
-            .localeCompare(rowSecond.cells[cellIndex].textContent));
-    }
+    // if (type === 'number') {
+    //     newRowsTable.sort((rowFirst, rowSecond) => (+rowFirst.cells[cellIndex].textContent)
+    //         - (+rowSecond.cells[cellIndex].textContent));
+    // } else if (type === 'string') {
+    //     newRowsTable.sort((rowFirst, rowSecond) => rowFirst.cells[cellIndex].textContent
+    //         .localeCompare(rowSecond.cells[cellIndex].textContent));
+    // }
 
     newRowsTable.forEach(row => body.appendChild(row));
 }
