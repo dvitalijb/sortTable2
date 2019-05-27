@@ -6,25 +6,16 @@ function sortTr(event) {
     const { type } = event.target.dataset;
     const body = table.tBodies[0];
     const newRowsTable = [...rows];
-    // const textContentCell =
 
-    switch(type) {
+    switch (type) {
         case 'number' :
             newRowsTable.sort((rowFirst, rowSecond) => (+rowFirst.cells[cellIndex].textContent)
-                - (+rowSecond.cells[cellIndex].textContent))
+                - (+rowSecond.cells[cellIndex].textContent));
             break;
         case 'string' :
             newRowsTable.sort((rowFirst, rowSecond) => rowFirst.cells[cellIndex].textContent
                 .localeCompare(rowSecond.cells[cellIndex].textContent));
     }
-
-    // if (type === 'number') {
-    //     newRowsTable.sort((rowFirst, rowSecond) => (+rowFirst.cells[cellIndex].textContent)
-    //         - (+rowSecond.cells[cellIndex].textContent));
-    // } else if (type === 'string') {
-    //     newRowsTable.sort((rowFirst, rowSecond) => rowFirst.cells[cellIndex].textContent
-    //         .localeCompare(rowSecond.cells[cellIndex].textContent));
-    // }
 
     newRowsTable.forEach(row => body.appendChild(row));
 }
