@@ -7,14 +7,16 @@ function sortTr(event) {
     const body = table.tBodies[0];
     const newRowsTable = [...rows];
 
-    switch (type) {
+    const contentTd = elem => elem.cells[cellIndex].textContent;
+
+    switch(type) {
         case 'number' :
-            newRowsTable.sort((rowFirst, rowSecond) => (+rowFirst.cells[cellIndex].textContent)
-                - (+rowSecond.cells[cellIndex].textContent));
+            newRowsTable.sort((rowFirst, rowSecond) => +contentTd(rowFirst)
+                - (+contentTd(rowSecond)));
             break;
         case 'string' :
-            newRowsTable.sort((rowFirst, rowSecond) => rowFirst.cells[cellIndex].textContent
-                .localeCompare(rowSecond.cells[cellIndex].textContent));
+            newRowsTable.sort((rowFirst, rowSecond) => contentTd(rowFirst)
+                .localeCompare(contentTd(rowSecond)));
     }
 
     newRowsTable.forEach(row => body.appendChild(row));
